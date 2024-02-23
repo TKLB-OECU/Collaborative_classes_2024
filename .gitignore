@@ -1,0 +1,3 @@
+# node_modules ディレクトリを無視するようにします。
+
+./node/src/node_modules/
