@@ -1,5 +1,7 @@
 # Collaborative_classes_2024
 
+## ディレクトリ構造
+<pre>
 root
 │
 ├── docker-compose.yml
@@ -20,3 +22,4 @@ root
 │   └──shap-e
 │
 └── README.md
+</pre>
