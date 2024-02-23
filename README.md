@@ -30,3 +30,10 @@ root
 │
 └── README.md
 </pre>
+
+
+## proxy.env
+後々記述予定
+
+    http_proxy=http://wwwproxy.osakac.ac.jp:8080
+    https_proxy=http://wwwproxy.osakac.ac.jp:8080
