@@ -1,14 +1,17 @@
 {
     "name": "node",
     "service": "collaborative_classes-node",
-    "workspaceFolder": "../src",
+    "workspaceFolder": "/src",
     "dockerComposeFile": "../../docker-compose.yml",
-    "extensions": [
-        "ritwickdey.LiveServer",
-        "yzhang.markdown-all-in-one",
-        "yzane.markdown-pdf",
-        "esbenp.prettier-vscode",
-        "bierner.markdown-mermaid"
-    ]
-
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ritwickdey.LiveServer",
+                "yzhang.markdown-all-in-one",
+                "yzane.markdown-pdf",
+                "esbenp.prettier-vscode",
+                "bierner.markdown-mermaid"
+            ]
+        }
+    }
 }
