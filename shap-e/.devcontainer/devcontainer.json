@@ -1,0 +1,6 @@
+{
+    "name": "Shap-E",
+    "service": "Collaborative-Shap-E",
+    "workspaceFolder": "../src",
+    "dockerComposeFile": "../../docker-compose.yml"
+}
