@@ -6,8 +6,11 @@ root
 ├── docker-compose.yml
 │
 ├── node
-│   ├── dockerfile
-│   └── node-src
+│   ├── .devcontainer
+│   │   ├── devcontainer.json
+│   │   └── dockerfile
+│   │
+│   └── src
 │       ├── app.js
 │       ├── package.json
 │       ├──public
@@ -16,8 +19,10 @@ root
 │       └──node_models
 │
 ├── shap-e
-│   ├── dockerfile
-│   └── workspace
+│   ├── .devcontainer
+│   │   ├── devcontainer.json
+│   │   └── dockerfile
+│   └── src
 │       ├── shap_e
 │       ├── server.py
 │       ├── start-server.sh
