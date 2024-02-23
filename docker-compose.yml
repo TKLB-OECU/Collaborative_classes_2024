@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+  collaborative_classes-node:
+    build: 
+      #ビルドする際に使用するdockerfileを指定
+      context: node/.devcontainer
+      dockerfile: dockerfile
+      #dockerfile内で使用する変数を渡す。
+      args:
+        - http_tmp=$http_proxy
+        - https_tmp=$https_proxy
+    #ディレクトリをコンテナ内にマウント
+    volumes:
+      - ./node/src:/src
+    #ワーキングディレクトリを指定
+    working_dir: /src
+    #コンテナ起動時に実行するプログラムを記述
+    command: /sbin/init
+    #proxyファイルを読み込む
+    env_file:
+      - proxy.env
+    #ttyとprivilegedを有効化
+    privileged: true
+    tty: true
+    #ポート設定
+    ports:
+      - "80:80"
+
+
+
+  collaborative_classes-shap-e:
+    build: 
+      #ビルドする際に使用するdockerfileを指定
+      context: node/.devcontainer
+      dockerfile: dockerfile
+      #dockerfile内で使用する変数を渡す。
+      args:
+        - http_tmp=$http_proxy
+        - https_tmp=$https_proxy
+    #ディレクトリをコンテナ内にマウント
+    volumes:
+      - ./node/src:/src
+    #ワーキングディレクトリを指定
+    working_dir: /src
+    #コンテナ起動時に実行するプログラムを記述
+    command: /sbin/init
+    #proxyファイルを読み込む
+    env_file:
+      - proxy.env
+    #ttyとprivilegedを有効化
+    privileged: true
+    tty: true
+    #ポート設定
+    ports:
+      - "8070:8070"
+    #GPUを使用するための設定
+    deploy:
+      resources:
+        #コンテナが使用するRAMの上限を設定する際は以下2行をコメントアウト
+        #limits:
+        #  memory: 24G
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+    #core dumpを防ぐ為の設定
+    shm_size: 12GB
+
