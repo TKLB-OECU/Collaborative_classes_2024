@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('pages/index', { title: 'トップページ' });
+    res.render('pages/3dCreate', { title: '3Dモデル作成' });
 });
 
 module.exports = router;
