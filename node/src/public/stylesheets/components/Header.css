@@ -1,0 +1,64 @@
+/* Header.css */
+
+/* サイトヘッダー */
+.header {
+    display: flex; /* 要素をフレックスボックスにする */
+    justify-content: space-between; /* 要素を均等に配置 */
+    align-items: center; /* 要素を垂直方向に中央揃え */
+    padding: 20px 0; /* 上下のパディング */
+    background-color: #7c97b6; /* プライマリーカラー */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* エレベーション: Level 1 */
+}
+
+/* ロゴ */
+.logo {
+    margin-left: 36px;
+    font-size: 24px; /* フォントサイズ */
+    font-weight: bold; /* 太字 */
+    text-decoration: none; /* テキスト装飾の削除 */
+    color: #546f8c; /* ターシャリーカラー: Kashmir Blue */
+    background-color: #d8e4f8; /* カラー: バックグラウンドカラー */
+    padding: 5px 10px; /* パディング */
+    border-radius: 5px; /* 角丸 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* エレベーション: Level 2 */
+    order: -1; /* ロゴを左に移動 */
+}
+
+/* ナビゲーション */
+.nav {
+    margin-right: 26px;
+}
+
+/* ナビゲーションリスト */
+.nav_list {
+    list-style: none; /* リストスタイルの削除 */
+    padding: 0; /* パディングの削除 */
+    margin: 0; /* マージンの削除 */
+}
+
+/* ナビゲーションアイテム */
+.nav_item {
+    font-size: 24px; /* フォントサイズ */
+    font-weight: bold; /* 太字 */
+    text-decoration: none; /* テキスト装飾の削除 */
+    background-color: #d8e4f8; /* カラー: バックグラウンドカラー */
+    padding: 5px 10px; /* パディング */
+    border-radius: 5px; /* 角丸 */
+    display: inline-block; /* インラインブロック要素にする */
+    margin: 0 10px; /* 左右のマージン */
+    width: 120px; /* 幅を固定 */
+    text-align: center; /* 中央揃え */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* エレベーション: Level 2 */
+}
+
+/* ナビゲーションリンク */
+.nav_item a {
+    text-decoration: none; /* テキスト装飾の削除 */
+    color: #546f8c; /* カラー: ターシャリーカラー */
+    font-size: 18px; /* フォントサイズ */
+}
+
+/* ナビゲーションリンクのホバー時のスタイル */
+.nav_item a:hover {
+    color: #2d465c; /* ホバー時のカラー: セカンドターシャーリーカラー */
+}
