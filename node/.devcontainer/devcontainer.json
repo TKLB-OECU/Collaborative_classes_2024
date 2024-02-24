@@ -1,7 +1,7 @@
 {
     "name": "node",
     "service": "collaborative_classes-node",
-    "workspaceFolder": "../src",
+    "workspaceFolder": "/src",
     "dockerComposeFile": "../../docker-compose.yml",
     "extensions": [
         "ritwickdey.LiveServer",

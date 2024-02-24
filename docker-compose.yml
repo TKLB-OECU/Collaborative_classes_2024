@@ -32,7 +32,7 @@ services:
   collaborative_classes-shap-e:
     build: 
       #ビルドする際に使用するdockerfileを指定
-      context: node/.devcontainer
+      context: shap-e/.devcontainer
       dockerfile: dockerfile
       #dockerfile内で使用する変数を渡す。
       args:
@@ -40,7 +40,7 @@ services:
         - https_tmp=$https_proxy
     #ディレクトリをコンテナ内にマウント
     volumes:
-      - ./node/src:/src
+      - ./shap-e/src:/src
     #ワーキングディレクトリを指定
     working_dir: /src
     #コンテナ起動時に実行するプログラムを記述
