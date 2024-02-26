@@ -42,7 +42,6 @@
     font-weight: bold; /* 太字 */
     text-decoration: none; /* テキスト装飾の削除 */
     background-color: #d8e4f8; /* カラー: バックグラウンドカラー */
-    padding: 5px 10px; /* パディング */
     border-radius: 5px; /* 角丸 */
     display: inline-block; /* インラインブロック要素にする */
     margin: 0 10px; /* 左右のマージン */
@@ -53,9 +52,12 @@
 
 /* ナビゲーションリンク */
 .nav_item a {
+    display: block;
     text-decoration: none; /* テキスト装飾の削除 */
+    padding: 10px 1px; /* パディング */
+    border-radius: 5px; /* 角丸 */
     color: #546f8c; /* カラー: ターシャリーカラー */
-    font-size: 18px; /* フォントサイズ */
+    font-size: 16px; /* フォントサイズ */
 }
 
 /* ナビゲーションリンクのホバー時のスタイル */
