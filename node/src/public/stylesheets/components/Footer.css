@@ -1,0 +1,12 @@
+/* Footer.css */
+
+footer {
+    background-color: #7c97b6; /* プライマリーカラー */
+    padding: 20px 0; /* 上下のパディング */
+    text-align: center; /* 中央揃え */
+
+}
+
+footer p {
+    margin: 0; /* パラグラフのマージンを削除 */
+}

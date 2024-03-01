@@ -1,0 +1,77 @@
+body{
+    margin: 0;
+    
+}
+
+/* フォント */
+h1 {
+    font-size: 36px;
+  }
+  
+  h2 {
+    font-size: 32px;
+  }
+  
+  h3 {
+    font-size: 28px;
+  }
+  
+  h4 {
+    font-size: 24px;
+  }
+  
+  h5 {
+    font-size: 20px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  label {
+    font-size: 14px;
+  }
+  
+  aside {
+    font-size: 12px;
+  }
+  
+  button {
+    font-size: 16px;
+  }
+  
+  /* 余白 */
+  h1,
+  h2 {
+    margin-top: 64px;
+  }
+  
+  h3,
+  h4,
+  h5 {
+    margin-top: 40px;
+  }
+  
+  h6 {
+    margin-top: 24px;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 24px;
+  }
+  
+  /* 特定の要素の余白 */
+  h4 {
+    margin-bottom: 16px;
+  }
+  
+  h5,
+  h6 {
+    margin-bottom: 16px;
+  }
+  
