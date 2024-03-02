@@ -1,12 +1,42 @@
 <!-- Headerを読み込む -->
 <%- include('../components/header') %>
 
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<!-- 3Dモデルを読み込むJavaScriptファイルを読み込む -->
 
-<h2>3Dモデルアップロード</h2>
+<script type="module" src="/javascripts/pages/3dMotion.js"></script>
+
+<!-- 3dMotion.html -->
+<main>
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+
+  <h2>重力加速度の取得</h2>
+
+  <h3>リクエスト先</h3>
+  <label for="urlInput">HTTPリクエスト先URL:</label>
+  <input type="text" id="urlInput" />
+  <button onclick="startFetching()">取得開始</button>
+  <button onclick="stopFetching()">取得停止</button>
+
+  <h3>パラメーター</h3>
+
+  <div id="gravityValues"></div>
+
+  <section>
+    <h2>3Dモデルアップロード</h2>
+
+    <input type="file" id="modelFile" accept=".glb" />
+  </section>
+  <section>
+    <h2>3Dモデル描画</h2>
+    <div id="glCanvasContainer">
+      <canvas id="myCanvas"></canvas>
+    </div>
+  </section>
+</main>
 
 <!-- ページ固有のスタイルの読み込み -->
-<link rel="stylesheet" href="/stylesheets/pages/3dMotion.css">
+<link rel="stylesheet" href="/stylesheets/pages/3dMotion.css" />
+
 <!-- Footerを読み込む -->
 <%- include('../components/footer') %>

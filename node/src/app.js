@@ -25,6 +25,8 @@ app.use(express.json());  // リクエストボディのJSONを解析
 app.use(express.urlencoded({ extended: false }));  // URLエンコードされたリクエストボディを解析
 app.use(cookieParser());  // Cookieを解析
 app.use(express.static(path.join(__dirname, 'public')));  // 静的ファイルの提供
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));// 静的ファイルの提供
+
 
 // ルーターミドルウェアの設定
 app.use('/', indexRouter);
