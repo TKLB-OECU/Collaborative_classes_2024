@@ -1,3 +1,14 @@
-h2{
-    color: blue;
+h2 {
+  color: blue;
+}
+
+#glCanvasContainer {
+  display: flex;
+  justify-content: center;
+
+}
+
+#myCanvas {
+  border: 2px solid black;
+  /* background-colorgb(161, 31, 31)ack; */
 }
