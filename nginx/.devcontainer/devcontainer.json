@@ -1,0 +1,6 @@
+{
+    "name": "nginx",
+    "service": "collaborative_classes-nginx",
+    "workspaceFolder": "/src",
+    "dockerComposeFile": "../../docker-compose.yml"
+}
