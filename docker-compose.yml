@@ -1,5 +1,10 @@
 version: '3'
 
+
+
+################################
+########## nodeの設定 ##########
+################################
 services:
   collaborative_classes-node:
     build: 
@@ -26,9 +31,14 @@ services:
     #ポート設定
     ports:
       - "80:3000"
+    #コンテナネットワークの設定
+    networks:
+      - my_network
 
 
-
+################################
+######### shap-eの設定 #########
+################################
   collaborative_classes-shap-e:
     build: 
       #ビルドする際に使用するdockerfileを指定
@@ -53,7 +63,10 @@ services:
     tty: true
     #ポート設定
     ports:
-      - "8070:8070"
+      - "8000:8000"
+    #コンテナネットワークの設定
+    networks:
+      - my_network
     #GPUを使用するための設定
     deploy:
       resources:
@@ -67,3 +80,79 @@ services:
     #core dumpを防ぐ為の設定
     shm_size: 12GB
 
+
+
+################################
+######## nllb-200の設定 ########
+################################
+  collaborative_classes-nllb-200:
+    build: 
+      #ビルドする際に使用するdockerfileを指定
+      context: nllb-200/.devcontainer
+      dockerfile: dockerfile
+      #dockerfile内で使用する変数を渡す。
+      args:
+        - http_tmp=$http_proxy
+        - https_tmp=$https_proxy
+    #ディレクトリをコンテナ内にマウント
+    volumes:
+      - ./nllb-200/src:/src
+    #ワーキングディレクトリを指定
+    working_dir: /src
+    #コンテナ起動時に実行するプログラムを記述
+    command: /sbin/init
+    #proxyファイルを読み込む
+    env_file:
+      - proxy.env
+    #ttyとprivilegedを有効化
+    privileged: true
+    tty: true
+    #ポート設定
+    ports:
+      - "8010:8010"
+    #コンテナネットワークの設定
+    networks:
+      - my_network
+    #GPUを使用するための設定
+    deploy:
+      resources:
+        #コンテナが使用するRAMの上限を設定する際は以下2行をコメントアウト
+        #limits:
+        #  memory: 24G
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+    #core dumpを防ぐ為の設定
+    shm_size: 12GB
+
+
+
+################################
+########## nginxの設定 ##########
+################################
+  collaborative_classes-nginx:
+    build: 
+      #ビルドする際に使用するdockerfileを指定
+      context: nginx/.devcontainer
+      dockerfile: dockerfile
+      #dockerfile内で使用する変数を渡す。
+      args:
+        - http_tmp=$http_proxy
+        - https_tmp=$https_proxy
+    #設定ファイルをコンテナ内にマウント。
+    volumes:
+      - ./nginx/src/nginx.conf:/etc/nginx/nginx.conf
+    #ポート設定
+    ports:
+      - "8020:8020"
+      - "8030:8030"
+    #コンテナネットワークの設定
+    networks:
+      - my_network
+
+
+# コンテナネットワークの定義
+networks:
+  my_network:  
+    driver: bridge
