@@ -2,41 +2,43 @@
 <%- include('../components/header') %>
 
 <!-- 3Dモデルを読み込むJavaScriptファイルを読み込む -->
-
-<script type="module" src="/javascripts/pages/3dMotion.js"></script>
-
 <!-- 3dMotion.html -->
-<main>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+<body>
+  <!-- コンテンツ -->
+  <h1>加速度センサーを使った3Dモデル制御</h1>
 
-  <h2>重力加速度の取得</h2>
+  <h1>加速度データ取得</h1>
+  <label for="urlInput">リクエスト先URL:</label>
+  <input type="text" id="urlInput" placeholder="URLを入力してください" />
+  <button id="startButton">通信開始</button>
+  <button id="stopButton">通信停止</button>
 
-  <h3>リクエスト先</h3>
-  <label for="urlInput">HTTPリクエスト先URL:</label>
-  <input type="text" id="urlInput" />
-  <button onclick="startFetching()">取得開始</button>
-  <button onclick="stopFetching()">取得停止</button>
+  <div id="acceleration">
+    <p>X: <span id="xValue">未取得</span></p>
+    <p>Y: <span id="yValue">未取得</span></p>
+    <p>Z: <span id="zValue">未取得</span></p>
+  </div>
 
-  <h3>パラメーター</h3>
+  <h3>3Dモデル描画</h3>
+  <!-- // 3Dモデルを表示させるcanvas要素を作成 -->
+  <!-- <canvas id="canvas"></canvas> -->
+  <input type="file" id="modelFileInput" style="display: none" />
+  <button id="selectModelButton">3Dモデルを選択</button>
 
-  <div id="gravityValues"></div>
-
-  <section>
-    <h2>3Dモデルアップロード</h2>
-
-    <input type="file" id="modelFile" accept=".glb" />
-  </section>
-  <section>
-    <h2>3Dモデル描画</h2>
-    <div id="glCanvasContainer">
-      <canvas id="myCanvas"></canvas>
-    </div>
-  </section>
-</main>
+  <canvas id="CanvasArea"></canvas>
+</body>
 
 <!-- ページ固有のスタイルの読み込み -->
 <link rel="stylesheet" href="/stylesheets/pages/3dMotion.css" />
+
+
+
+
+
+<script type="module" src="javascripts/module/three.min.js"></script>
+<script type="module" src="javascripts/module/GLTFLoader.js"></script>
+<script type="module" src="javascripts/module/DRACOLoader.js"></script>
+<script type="module" src="javascripts/pages/3dMotion.js"></script>
 
 <!-- Footerを読み込む -->
 <%- include('../components/footer') %>
