@@ -5,10 +5,10 @@ h2 {
 #glCanvasContainer {
   display: flex;
   justify-content: center;
-
 }
 
-#myCanvas {
-  border: 2px solid black;
-  /* background-colorgb(161, 31, 31)ack; */
+.project {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
