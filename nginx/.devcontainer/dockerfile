@@ -1,0 +1,9 @@
+FROM nginx
+
+#docker-composeから環境変数の引数を受け取る
+ARG http_tmp
+ARG https_tmp
+
+#環境変数を環境に設定
+ENV http_proxy=$http_tmp
+ENV https_proxy=$https_tmp

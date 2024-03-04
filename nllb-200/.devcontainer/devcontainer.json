@@ -1,0 +1,6 @@
+{
+    "name": "nllb-200",
+    "service": "collaborative_classes-nllb-200",
+    "workspaceFolder": "/src",
+    "dockerComposeFile": "../../docker-compose.yml"
+}
