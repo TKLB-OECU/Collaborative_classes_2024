@@ -30,7 +30,7 @@ services:
     tty: true
     #ポート設定
     ports:
-      - "3000:3000"
+      - "3010:3000"
     #コンテナネットワークの設定
     networks:
       - my_network
