@@ -1,102 +1,195 @@
-import * as THREE from '/node_modules/three/build/three.module.min.js';
-
-// キャンバスサイズ
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
-
-// ウィンドウのリサイズ時にキャンバスサイズを更新する関数
-const resizeCanvas = () => {
-    // ウィンドウサイズを取得
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
-
-    // カメラのアスペクト比を更新
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
-
-    // レンダラーのサイズを更新
-    renderer.setSize(sizes.width, sizes.height);
+// Three.js シーンやモデルを管理するオブジェクト
+const sceneManager = {
+  renderer: null,
+  scene: null,
+  camera: null,
+  model: null,
 };
 
-// ウィンドウのリサイズイベントリスナーを追加
-window.addEventListener('resize', resizeCanvas);
+// モデルの加速度を管理するオブジェクト
+const modelAcceleration = {
+  x: 0,
+  y: 0,
+  z: 0,
+};
 
-// シーン
-const scene = new THREE.Scene();
-
-// カメラ
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-camera.position.z = 2;
-
-// レンダラー
-const renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById('myCanvas')
-});
-renderer.setSize(sizes.width, sizes.height);
-
-// 光源を作成
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-// カメラと同じ位置に光源を配置
-directionalLight.position.copy(camera.position);
-// カメラの方向を取得して光源の方向に設定
-directionalLight.target.position.copy(camera.getWorldDirection(new THREE.Vector3()).negate());
-// シーンに追加
-scene.add(directionalLight);
-
-function loadModel(file) {
-    const loader = new GLTFLoader();
-    loader.load(
-        file,
-        function (gltf) {
-            const model = gltf.scene;
-            scene.add(model);
-
-            // モデルのサイズを取得
-            const bbox = new THREE.Box3().setFromObject(model);
-            const modelSize = bbox.getSize(new THREE.Vector3());
-
-            // カメラの位置をモデルのサイズに応じて調整
-            const maxModelSize = Math.max(modelSize.x, modelSize.y, modelSize.z);
-            const distance = maxModelSize * 2; // 2倍のサイズで調整（適宜調整可能）
-
-            camera.position.z = distance;
-        },
-        undefined,
-        function (error) {
-            console.error('Failed to load GLTF model', error);
-        }
-    );
+// Three.js の初期化を行う関数
+function initializeThreeJS() {
+  // レンダラーを作成
+  sceneManager.renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#CanvasArea')
+  });
+  
+  // シーンを作成
+  sceneManager.scene = new THREE.Scene();
+  
+  // カメラを作成
+  sceneManager.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+  
+  // 平行光源を作成
+  const light = new THREE.DirectionalLight(0xFFFFFF, 1.5);
+  light.position.set(-100, 0, 1000); // 光源の位置を設定
+  light.target.position.set(0, 0, 0); // 光源のターゲットを設定
+  sceneManager.scene.add(light);
+  sceneManager.scene.add(light.target); // ターゲットをシーンに追加
+  
+  // グリッド状の平面を作成
+  const gridGeometry = new THREE.PlaneGeometry(4000, 4000, 20, 20);
+  const gridMaterial = new THREE.MeshBasicMaterial({ color: 0x666666, wireframe: true });
+  const grid = new THREE.Mesh(gridGeometry, gridMaterial);
+  grid.rotation.x = -Math.PI / 2; // X軸周りに90度回転して水平に配置
+  grid.position.y = -300; // 箱の下に配置
+  sceneManager.scene.add(grid);
 }
 
-// ファイルの選択時にモデルを読み込むイベントリスナーを追加
-document.getElementById('modelFile').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        loadModel(URL.createObjectURL(file), scene, camera);
+// Three.js のリサイズ関連の処理をまとめた関数
+function handleResize() {
+  // レンダラーのサイズを設定
+  function setRendererSize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    sceneManager.renderer.setSize(width, height);
+    sceneManager.renderer.setPixelRatio(window.devicePixelRatio);
+  }
+  setRendererSize(); // 初期設定
+
+  // カメラの位置を設定
+  function setCameraPosition() {
+    sceneManager.camera.aspect = window.innerWidth / window.innerHeight;
+    sceneManager.camera.updateProjectionMatrix();
+    sceneManager.camera.position.set(0, 0, Math.max(window.innerWidth, window.innerHeight));
+    sceneManager.camera.lookAt(sceneManager.scene.position);
+  }
+  setCameraPosition(); // 初期設定
+}
+
+// モデルのロード関数
+function loadModel(contents) {
+  const loader = new THREE.GLTFLoader();
+  const dracoLoader = new THREE.DRACOLoader();
+  loader.setDRACOLoader(dracoLoader);
+  loader.load(contents, function (gltf) {
+    if (sceneManager.model) {
+      sceneManager.scene.remove(sceneManager.model);
     }
-});
+    sceneManager.model = gltf.scene;
 
+    // モデルのサイズを取得
+    const box = new THREE.Box3().setFromObject(sceneManager.model);
+    const size = new THREE.Vector3();
+    box.getSize(size);
 
-// アニメーション関数
+    // 適切な拡大率を計算
+    const maxSize = Math.max(size.x, size.y, size.z);
+    const scale = 300 / maxSize; // 200 は適当な基準サイズ
+
+    // モデルに拡大率を適用
+    sceneManager.model.scale.set(scale, scale, scale);
+
+    sceneManager.scene.add(sceneManager.model);
+    animate(); // モデルが読み込まれた後にアニメーションを開始
+  }, undefined, function (error) {
+    console.error("モデルの読み込み中にエラーが発生しました。", error);
+  });
+}
+
+// アニメーションループ
 function animate() {
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    // モデルを回転させる
-    if (scene.children.length > 1) {
-        const model = scene.children[1]; // シーンに追加されたモデルを取得（カメラ以外の最初のオブジェクト）
+  // 回転と移動
+  if (sceneManager.model) {
+    sceneManager.model.rotation.x += modelAcceleration.x * 0.001;
+    sceneManager.model.rotation.y += modelAcceleration.y * 0.001;
+    sceneManager.model.rotation.z += modelAcceleration.z * 0.001;
+  }
 
-        // Y軸を中心に回転させる
-        model.rotation.y += 0.01; // 例として毎フレームごとに0.01ラジアン回転するよう設定
-
-        // X軸を中心に回転させる
-        model.rotation.x += 0.01; // 例として毎フレームごとに0.01ラジアン回転するよう設定
-    }
-
-    // レンダリング
-    renderer.render(scene, camera);
+  // 描画
+  sceneManager.renderer.render(sceneManager.scene, sceneManager.camera);
 }
 
-// 初回アニメーション開始
-animate();
+// 初期化関数
+function initialize() {
+  initializeThreeJS(); // Three.js の初期化
+  handleResize(); // リサイズ関連の処理
+
+  // ファイル選択用のボタン
+  document.getElementById('selectModelButton').addEventListener('click', function () {
+    document.getElementById('modelFileInput').click();
+  });
+
+  // ファイルの読み込みとモデルのロード
+  document.getElementById('modelFileInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const contents = event.target.result;
+      console.log("ファイルが正常に読み込まれました。");
+      console.log("ファイル内容:", contents); // ファイルの内容をコンソールに出力
+
+      // モデルをロード
+      loadModel(contents);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ウィンドウのリサイズイベントにリスナーを追加
+  window.addEventListener('resize', handleResize);
+
+  // アニメーションを開始
+  animate();
+}
+
+// 初期化関数を実行
+window.addEventListener('DOMContentLoaded', initialize);
+
+
+// 定期的なリクエスト送信を管理するための変数
+let intervalId;
+
+// ボタン要素の取得
+const startButton = document.getElementById('startButton');
+const stopButton = document.getElementById('stopButton');
+const urlInput = document.getElementById('urlInput');
+
+// リクエスト間隔（ミリ秒）
+const requestInterval = 1000;
+
+// 開始ボタンがクリックされたときの処理
+function startRequest() {
+  const url = urlInput.value;
+  intervalId = setInterval(sendRequest, requestInterval, url);
+}
+
+// リクエストを送信する関数
+async function sendRequest(url) {
+  try {
+    const response = await fetch(`/3dMotion/getAccelerationData?url=${url}`);
+    const accelerationData = await response.json();
+    updateAccelerationValues(accelerationData);
+  } catch (error) {
+    console.error('エラー:', error);
+  }
+}
+
+// 加速度データを更新する関数
+function updateAccelerationValues(data) {
+  const { x, y, z } = data;
+  document.getElementById('xValue').textContent = x;
+  document.getElementById('yValue').textContent = y;
+  document.getElementById('zValue').textContent = z;
+  modelAcceleration.x = x;
+  modelAcceleration.y = y;
+  modelAcceleration.z = z;
+}
+
+// 停止ボタンがクリックされたときの処理
+function stopRequest() {
+  clearInterval(intervalId);
+}
+
+// 開始ボタンのクリックイベントリスナーを追加
+startButton.addEventListener('click', startRequest);
+
+// 停止ボタンのクリックイベントリスナーを追加
+stopButton.addEventListener('click', stopRequest);

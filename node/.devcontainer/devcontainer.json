@@ -10,7 +10,8 @@
                 "yzhang.markdown-all-in-one",
                 "yzane.markdown-pdf",
                 "esbenp.prettier-vscode",
-                "bierner.markdown-mermaid"
+                "bierner.markdown-mermaid",
+                "GitHub.copilot"
             ]
         }
     }
