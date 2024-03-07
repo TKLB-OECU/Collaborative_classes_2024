@@ -276,9 +276,9 @@ function stopRequest() {
   modelAcceleration.x = 0;
   modelAcceleration.y = 0;
   modelAcceleration.z = 0;
-  document.getElementById('xValue').textContent = 0;
-  document.getElementById('yValue').textContent = 0;
-  document.getElementById('zValue').textContent = 0;
+  document.getElementById('xValue').textContent = "未取得";
+  document.getElementById('yValue').textContent = "未取得";
+  document.getElementById('zValue').textContent = "未取得";
   startButton.disabled = false; // 開始ボタンを有効にする
   stopButton.disabled = true; // 停止ボタンを無効にする
 }
