@@ -6,11 +6,12 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "express": "~4.16.1",
     "axios": "^1.6.7",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http": "^0.0.1-security",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1"
   }
