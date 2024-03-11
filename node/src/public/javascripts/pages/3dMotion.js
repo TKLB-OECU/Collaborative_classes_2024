@@ -21,7 +21,7 @@ const modelAcceleration = {
 
 // キャンバスサイズ
 const sizes = {
-  width: window.innerWidth,
+  width: document.body.clientWidth,
   height: window.innerHeight
 }
 
@@ -36,7 +36,7 @@ function initializeThreeJS() {
   sceneManager.scene = new THREE.Scene();
 
   // カメラを作成
-  sceneManager.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 3000);
+  sceneManager.camera = new THREE.PerspectiveCamera(45, document.body.clientWidth / window.innerHeight, 1, 3000);
 
   // 平行光源を作成
   const light = new THREE.DirectionalLight(0xFFFFFF, 1.5);
@@ -60,7 +60,7 @@ function initializeThreeJS() {
 function handleResize() {
 
   // ウィンドウサイズを取得
-  sizes.width = window.innerWidth;
+  sizes.width = document.body.clientWidth;
   sizes.height = window.innerHeight;
 
   // レンダラーのサイズを設定
@@ -72,7 +72,7 @@ function handleResize() {
 
   // カメラの位置を設定
   function setCameraPosition() {
-    sceneManager.camera.aspect = window.innerWidth / window.innerHeight;
+    sceneManager.camera.aspect = document.body.clientWidth / window.innerHeight;
     sceneManager.camera.updateProjectionMatrix();
     sceneManager.camera.position.set(0, 0, 1000);
     sceneManager.camera.lookAt(sceneManager.scene.position);

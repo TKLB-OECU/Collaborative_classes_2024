@@ -1,17 +1,20 @@
 <!-- Headerを読み込む -->
 <%- include('../components/header') %>
 
+<div class="page_title">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+</div>
+
 <div class="content">
   <div class="content_item">
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
 
     <h2>概要…</h2>
 
-    <video width="480" height="270" controls>
+    <!-- <video width="480" height="270" controls>
       <source src="/videos/sample.mp4" type="video/mp4">
       Your browser does not support the video tag.
-    </video>
+    </video> -->
   </div>
 </div>
 <!-- ページ固有のスタイルの読み込み -->
