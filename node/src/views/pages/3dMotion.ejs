@@ -3,37 +3,53 @@
 
 <!-- 3Dモデルを読み込むJavaScriptファイルを読み込む -->
 <!-- 3dMotion.html -->
-<body>
-  <!-- コンテンツ -->
+<!-- コンテンツ -->
+
+<div class="page_title">
   <h1>加速度センサーを使った3Dモデル制御</h1>
+</div>
 
-  <h1>加速度データ取得</h1>
-  <label for="urlInput">リクエスト先URL:</label>
-  <input type="text" id="urlInput" placeholder="URLを入力してください" />
-  <button id="startButton">通信開始</button>
-  <button id="stopButton">通信停止</button>
+<div class="content">
+  <div class="content_item">
+    <h1>加速度データ取得</h1>
+    <div>
+      <label for="urlInput">リクエスト先URL:</label>
+      <input class="textInput" type="text" id="urlInput" placeholder="URLを入力してください" />
+      <button id="startButton">通信開始</button>
+      <button id="stopButton">通信停止</button>
+    </div>
 
-  <div id="acceleration">
-    <p>X: <span id="xValue">未取得</span></p>
-    <p>Y: <span id="yValue">未取得</span></p>
-    <p>Z: <span id="zValue">未取得</span></p>
+    <div id="acceleration">
+      <table>
+        <tr>
+          <th></th>
+          <th>X</th>
+          <th>Y</th>
+          <th>Z</th>
+        </tr>
+        <tr>
+          <td>加速度</td>
+          <td id="xValue">未取得</td>
+          <td id="yValue">未取得</td>
+          <td id="zValue">未取得</td>
+        </tr>
+      </table>
+    </div>
   </div>
 
-  <h3>3Dモデル描画</h3>
-  <!-- // 3Dモデルを表示させるcanvas要素を作成 -->
-  <!-- <canvas id="canvas"></canvas> -->
-  <input type="file" id="modelFileInput" style="display: none" />
-  <button id="selectModelButton">3Dモデルを選択</button>
+  <div class="content_item">
+    <h3>3Dモデル描画</h3>
+    <!-- // 3Dモデルを表示させるcanvas要素を作成 -->
+    <!-- <canvas id="canvas"></canvas> -->
+    <input type="file" id="modelFileInput" style="display: none" />
+    <button id="selectModelButton">3Dモデルを選択</button>
+  </div>
+</div>
 
-  <canvas id="CanvasArea"></canvas>
-</body>
+<canvas id="CanvasArea"></canvas>
 
 <!-- ページ固有のスタイルの読み込み -->
 <link rel="stylesheet" href="/stylesheets/pages/3dMotion.css" />
-
-
-
-
 
 <script type="module" src="javascripts/module/three.min.js"></script>
 <script type="module" src="javascripts/module/GLTFLoader.js"></script>
