@@ -4,14 +4,14 @@
 
 // キャンバスサイズ
 const sizes = {
-    width: window.innerWidth,
+    width: document.body.clientWidth,
     height: window.innerHeight
 }
 
 // ウィンドウのリサイズ時にキャンバスサイズを更新する関数
 const resizeCanvas = () => {
     // ウィンドウサイズを取得
-    sizes.width = window.innerWidth;
+    sizes.width = document.body.clientWidth;
     sizes.height = window.innerHeight;
 
     // カメラのアスペクト比を更新
@@ -29,7 +29,7 @@ window.addEventListener('resize', resizeCanvas);
 const scene = new THREE.Scene();
 
 // カメラの設定
-var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+var camera = new THREE.PerspectiveCamera(45, document.body.clientWidth / window.innerHeight, 0.1, 100);
 camera.position.set(0, 2, 5);
 camera.lookAt(0, 0, 0);
 

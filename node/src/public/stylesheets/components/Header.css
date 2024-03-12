@@ -2,6 +2,7 @@
 
 /* サイトヘッダー */
 .header {
+    width: 100%; /* 幅 */
     display: flex; /* 要素をフレックスボックスにする */
     justify-content: space-between; /* 要素を均等に配置 */
     align-items: center; /* 要素を垂直方向に中央揃え */
