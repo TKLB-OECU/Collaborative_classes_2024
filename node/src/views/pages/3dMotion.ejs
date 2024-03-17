@@ -14,7 +14,12 @@
     <h1>加速度データ取得</h1>
     <div>
       <label for="urlInput">リクエスト先URL:</label>
-      <input class="textInput" type="text" id="urlInput" placeholder="URLを入力してください" />
+      <input
+        class="textInput"
+        type="text"
+        id="urlInput"
+        placeholder="URLを入力してください"
+      />
       <button id="startButton">通信開始</button>
       <button id="stopButton">通信停止</button>
     </div>
@@ -37,6 +42,13 @@
     </div>
   </div>
 
+  <div
+    id="container"
+    style="width: 800px; height: 600px; border: 1px solid grey"
+  ></div>
+      <!-- 変更を反映するボタン -->
+      <button id="applyChangesButton">変更を反映する</button>
+
   <div class="content_item">
     <h3>3Dモデル描画</h3>
     <!-- // 3Dモデルを表示させるcanvas要素を作成 -->
@@ -51,10 +63,55 @@
 <!-- ページ固有のスタイルの読み込み -->
 <link rel="stylesheet" href="/stylesheets/pages/3dMotion.css" />
 
-<script type="module" src="javascripts/module/three.min.js"></script>
-<script type="module" src="javascripts/module/GLTFLoader.js"></script>
-<script type="module" src="javascripts/module/DRACOLoader.js"></script>
+<!-- Three.jsの読み込み -->
+<script src="javascripts/module/three.min.js"></script>
+<script src="javascripts/module/GLTFLoader.js"></script>
+<script src="javascripts/module/DRACOLoader.js"></script>
+
+<!-- 3dMotion.jsの読み込み -->
 <script type="module" src="javascripts/pages/3dMotion.js"></script>
 
+<!-- monacoEdito関連r -->
+<script>
+  setTimeout(function () {
+    // 5秒後に実行するコード
+    require.config({
+      paths: { vs: "javascripts/module/monaco-editor/min/vs" },
+    });
+
+    require(["vs/editor/editor.main"], function () {
+      // ソースコードの取得
+      fetch("/javascripts/pages/updateAcceleration.js")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to load script: " + response.status);
+          }
+          return response.text();
+        })
+        .then((sourceCode) => {
+          // Monaco Editor の初期化
+          var editor = monaco.editor.create(
+            document.getElementById("container"),
+            {
+              value: sourceCode,
+              language: "javascript",
+            },
+          );
+
+          // 変更を反映するボタン
+          document.getElementById("applyChangesButton").addEventListener("click", function () {
+            // エディタの内容を取得
+            var newSourceCode = editor.getValue();
+            // 取得した内容を実行
+            eval(newSourceCode);
+          });
+        })
+        .catch((error) => {
+          console.error("Script loading error:", error);
+        });
+    });
+  }, 10); // 0.01秒後に読み込む
+</script>
+<script src="javascripts/module/monaco-editor/min/vs/loader.js"></script>
 <!-- Footerを読み込む -->
 <%- include('../components/footer') %>
