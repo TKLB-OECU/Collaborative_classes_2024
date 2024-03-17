@@ -235,17 +235,18 @@ const urlInput = document.getElementById('urlInput');
 // リクエスト間隔（ミリ秒）
 const requestInterval = 1000;
 
-// updateAccelerationValues 関数をインポート
-import { updateAccelerationValues } from './updateAcceleration.js';
-import { updateModelAcceleration } from './updateModelAcceleration.js';
+// updateAcceleration 関数をインポート
+import { updateAcceleration } from './updateAcceleration.js';
+
+//updateAccelerationValuesをグローバルスコープに
+window.updateAcceleration = updateAcceleration;
 
 // リクエストを送信する関数
 async function sendRequest(url) {
   try {
     const response = await fetch(`/3dMotion/getAccelerationData?url=${url}`);
     const accelerationData = await response.json();
-    updateAccelerationValues(accelerationData);
-    updateModelAcceleration(accelerationData);
+    window.updateAcceleration(accelerationData);
   } catch (error) {
     console.error('エラー:', error);
   }
