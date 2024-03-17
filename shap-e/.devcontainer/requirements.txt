@@ -1,7 +1,6 @@
+#shap-e関連
 pyyaml
 ipywidgets
-fastapi
-uvicorn
 trimesh
 filelock
 Pillow
@@ -16,3 +15,10 @@ scipy
 numpy
 blobfile
 clip @ git+https://github.com/openai/CLIP.git
+
+#FastAPI関連
+fastapi
+uvicorn
+
+#その他
+setproctitle
