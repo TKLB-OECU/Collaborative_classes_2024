@@ -1,7 +1,7 @@
 // updateAcceleration.js
 
 // 加速度データの値を更新する関数
-function updateAccelerationValues(data) {
+function updateAcceleration(data) {
   var { x, y, z } = data;
   document.getElementById('xValue').textContent = x;
   document.getElementById('yValue').textContent = y;
@@ -11,4 +11,4 @@ function updateAccelerationValues(data) {
   modelAcceleration.z += z;
 }
 
-export { updateAccelerationValues };
+export { updateAcceleration };
