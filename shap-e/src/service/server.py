@@ -5,6 +5,7 @@ import sys
 import uvicorn
 import fastapi
 import time
+from setproctitle import setproctitle
 from fastapi.responses import JSONResponse
 from os.path import dirname, abspath
 
@@ -89,21 +90,11 @@ def glb_to_base64(Generated_name):
 
 
 if __name__ == "__main__":
-    #使用するデバイスの設定
-    # 利用可能なCUDAデバイスの数を取得
-    num_devices = torch.cuda.device_count()
+    #プロセス名称の指定
+    setproctitle('Collaborative_classes_2024 [shap-e]')
 
-    # CUDAが利用可能であるかどうかを確認
-    if torch.cuda.is_available() and num_devices > 1:
-        # 各CUDAデバイスに対してループを実行し、それぞれのデバイスを選択
-        for i in range(num_devices):
-            torch.cuda.set_device(i)
-            device = torch.device('cuda')
-            print(f'CUDA:{i} selected')
-    else:
-        device = torch.device('cpu')
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        print(f'Using device: {device}')
+    #使用するデバイスの設定
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     #モデル群のロード
     if device.type == "cuda":
