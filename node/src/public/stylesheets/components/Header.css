@@ -1,66 +1,98 @@
-/* Header.css */
-
-/* サイトヘッダー */
-.header {
-    display: flex; /* 要素をフレックスボックスにする */
-    justify-content: space-between; /* 要素を均等に配置 */
-    align-items: center; /* 要素を垂直方向に中央揃え */
-    padding: 20px 0; /* 上下のパディング */
-    background-color: #7c97b6; /* プライマリーカラー */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* エレベーション: Level 1 */
+header{
+  width: 100%; /* 全幅 */
+  background-color: #7c97b6; /* 背景色 */
+  display: flex; /* フレックスコンテナ */
+  justify-content: center; /* 水平方向中央揃え */
+  align-items: center; /* 垂直方向中央揃え */
+  border-bottom: 1px solid #444444; /* 下線 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* ボックスシャドウ */
 }
 
-/* ロゴ */
-.logo {
-    margin-left: 36px;
-    font-size: 24px; /* フォントサイズ */
-    font-weight: bold; /* 太字 */
-    text-decoration: none; /* テキスト装飾の削除 */
-    color: #546f8c; /* ターシャリーカラー: Kashmir Blue */
-    background-color: #d8e4f8; /* カラー: バックグラウンドカラー */
-    padding: 5px 10px; /* パディング */
-    border-radius: 5px; /* 角丸 */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* エレベーション: Level 2 */
-    order: -1; /* ロゴを左に移動 */
-}
 
-/* ナビゲーション */
-.nav {
-    margin-right: 26px;
-}
 
-/* ナビゲーションリスト */
-.nav_list {
-    list-style: none; /* リストスタイルの削除 */
-    padding: 0; /* パディングの削除 */
-    margin: 0; /* マージンの削除 */
-}
 
-/* ナビゲーションアイテム */
-.nav_item {
-    font-size: 24px; /* フォントサイズ */
-    font-weight: bold; /* 太字 */
-    text-decoration: none; /* テキスト装飾の削除 */
-    background-color: #d8e4f8; /* カラー: バックグラウンドカラー */
-    border-radius: 5px; /* 角丸 */
-    display: inline-block; /* インラインブロック要素にする */
-    margin: 0 10px; /* 左右のマージン */
-    width: 120px; /* 幅を固定 */
-    text-align: center; /* 中央揃え */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* エレベーション: Level 2 */
-}
+  /* Headerのスタイル */
+  .header-ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    /* グラデーション背景 */
+    background: linear-gradient(to bottom right, #fafafa, #f1f1f1);
+    /* 影とハイライト */
+    box-shadow: inset 0 1px 0 #fff, 0 0px 0 1px #fff;
+    flex-wrap: wrap; /* オーバーフロー時にアイテムを折り返す */
+  }
 
-/* ナビゲーションリンク */
-.nav_item a {
-    display: block;
-    text-decoration: none; /* テキスト装飾の削除 */
-    padding: 10px 1px; /* パディング */
-    border-radius: 5px; /* 角丸 */
-    color: #546f8c; /* カラー: ターシャリーカラー */
-    font-size: 16px; /* フォントサイズ */
-}
+  /* 疑似要素によるグラデーションエフェクト */
+  .header-ul::after {
+    content: ""; /* 空のコンテンツ */
+    height: 10%; /* 高さ */
+    left: -5%; /* 位置 */
+    position: absolute; /* 絶対位置指定 */
+    top: -7%; /* 位置 */
+    width: 110%; /* 幅 */
+    z-index: 1; /* Zインデックス */
+    /* グラデーション背景 */
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.7));
+    /* エフェクト用の回転 */
+    transform: rotate(-2.4deg);
+  }
 
-/* ナビゲーションリンクのホバー時のスタイル */
-.nav_item a:hover {
-    color: #2d465c; /* ホバー時のカラー: セカンドターシャーリーカラー */
-}
+  /* ヘッダーのリストアイテムのスタイル */
+  .header-li {
+    display: flex; /* フレックスアイテム */
+  }
+
+  /* ヘッダーのアンカー（リンク）のスタイル */
+  .header-a {
+    border-left: 1px solid #fff; /* 左側の境界線 */
+    border-right: 1px solid #dedede; /* 右側の境界線 */
+    color: #313131; /* テキスト色 */
+    display: block; /* ブロック要素 */
+    font-size: 1.4vw; /* フォントサイズ */
+    height: 6vh; /* 高さ */
+    line-height: 6vh; /* 行の高さ */
+    padding: 0 3.5vw; /* パディング */
+    width: 10vw; /* 幅 */
+    position: relative; /* 位置指定 */
+    text-decoration: none; /* 下線なし */
+    text-shadow: 0 1px 0 #fff; /* テキストの影 */
+    text-align: center; /* テキストを中央揃え */
+    z-index: 2; /* Zインデックス */
+    /* トランジション効果 */
+    transition: all 150ms linear;
+  }
+
+  /* フォーカス時のアウトラインを削除 */
+  .header-a:focus {
+    outline: none;
+  }
+
+  /* ホバー時のスタイル */
+  .header-ul:hover .header-a {
+    color: transparent; /* テキストを透明に */
+    text-shadow: 0 0 0.5vw #adadad; /* テキストの影 */
+  }
+
+  /* ヘッダーのアンカー（リンク）のホバー時のスタイル */
+  .header-ul:hover .header-a:hover {
+    background: #fafafa; /* ホバー時の背景色 */
+    color: #444; /* ホバー時のテキスト色 */
+    line-height: 4.3vh; /* ホバー時の行の高さ */
+    text-shadow: 0 1px 0 #fff; /* ホバー時のテキストの影 */
+    text-decoration: underline; /* ホバー時に下線を表示 */
+  }
+
+  /* アクティブ（クリック）時のスタイル */
+  .header-ul:hover .header-a:active {
+    border-left-color: #f0f0f0; /* アクティブ時の左境界線の色 */
+    color: #999; /* アクティブ時のテキスト色 */
+    line-height: 4.7vh; /* アクティブ時の行の高さ */
+    /* アクティブ時のボックスシャドウ */
+    box-shadow: inset 0 0 2.2vw #e9e9e9;
+    /* アクティブ時のトランジションを削除 */
+    transition: none;
+  }

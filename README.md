@@ -9,6 +9,7 @@ E:.
 │      ├─bin               //Node.jsを使用して基本的なWebサーバーを作成
 │      ├─public            //静的ファイル等（各ページのJavaScript,CSS,image等）
 │      │  ├─images
+│      │  ├─videos
 │      │  ├─javascripts
 │      │  └─stylesheets
 │      │      ├─components
