@@ -252,16 +252,7 @@ async function sendRequest(url) {
   }
 }
 
-// // 加速度データを更新する関数
-// function updateAccelerationValues(data) {
-//   const { x, y, z } = data;
-//   document.getElementById('xValue').textContent = x;
-//   document.getElementById('yValue').textContent = y;
-//   document.getElementById('zValue').textContent = z;
-//   modelAcceleration.x = x;
-//   modelAcceleration.y = y;
-//   modelAcceleration.z = z;
-// }
+
 
 // 初期状態では停止ボタンは無効にする
 stopButton.disabled = true;
