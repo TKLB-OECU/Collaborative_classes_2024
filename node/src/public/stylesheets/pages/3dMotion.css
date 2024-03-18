@@ -1,23 +1,16 @@
-h2 {
-  color: blue;
-}
-
 #glCanvasContainer {
   display: flex;
   justify-content: center;
 }
 
-.project {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 #container {
   width: 100%; /* 画面幅の80%に設定 */
-  max-width: 1000px; /* 最大幅を800pxに制限 */
+  max-width: 800; /* 最大幅を800pxに制限 */
   height: 60vh; /* 画面の高さの60%に設定 */
   max-height: 600px; /* 最大高さを600pxに制限 */
-  margin: auto; /* 左右中央に配置 */
   border: 1px solid grey;
+}
+
+#applyChangesButton{
+  margin-top: 5vh;
 }
