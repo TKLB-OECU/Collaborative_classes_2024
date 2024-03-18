@@ -13,7 +13,7 @@ const sceneManager = {
 };
 
 // モデルの加速度を管理するオブジェクト
-const modelAcceleration = {
+window.modelAcceleration = {
   x: 0,
   y: 0,
   z: 0,
@@ -235,29 +235,33 @@ const urlInput = document.getElementById('urlInput');
 // リクエスト間隔（ミリ秒）
 const requestInterval = 1000;
 
+// updateAcceleration 関数をインポート
+import { updateAcceleration } from './updateAcceleration.js';
 
+//updateAccelerationValuesをグローバルスコープに
+window.updateAcceleration = updateAcceleration;
 
 // リクエストを送信する関数
 async function sendRequest(url) {
   try {
     const response = await fetch(`/3dMotion/getAccelerationData?url=${url}`);
     const accelerationData = await response.json();
-    updateAccelerationValues(accelerationData);
+    window.updateAcceleration(accelerationData);
   } catch (error) {
     console.error('エラー:', error);
   }
 }
 
-// 加速度データを更新する関数
-function updateAccelerationValues(data) {
-  const { x, y, z } = data;
-  document.getElementById('xValue').textContent = x;
-  document.getElementById('yValue').textContent = y;
-  document.getElementById('zValue').textContent = z;
-  modelAcceleration.x = x;
-  modelAcceleration.y = y;
-  modelAcceleration.z = z;
-}
+// // 加速度データを更新する関数
+// function updateAccelerationValues(data) {
+//   const { x, y, z } = data;
+//   document.getElementById('xValue').textContent = x;
+//   document.getElementById('yValue').textContent = y;
+//   document.getElementById('zValue').textContent = z;
+//   modelAcceleration.x = x;
+//   modelAcceleration.y = y;
+//   modelAcceleration.z = z;
+// }
 
 // 初期状態では停止ボタンは無効にする
 stopButton.disabled = true;
@@ -288,3 +292,10 @@ startButton.addEventListener('click', startRequest);
 
 // 停止ボタンのクリックイベントリスナーを追加
 stopButton.addEventListener('click', stopRequest);
+
+
+
+//###################################
+//########　monacoエディタ    ########
+//##################################
+

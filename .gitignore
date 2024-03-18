@@ -3,3 +3,4 @@ __pycache__
 core.*
 tmp.ply
 node/src/node_modules/
+node/src/bin/www
