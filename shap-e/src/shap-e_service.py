@@ -129,7 +129,7 @@ if __name__ == "__main__":
     setproctitle('Collaborative_classes_2024 [shap-e]')
 
     #モデル保存先の確認
-    save_path = "./shap"
+    save_path = "./generated_shape"
     if not os.path.exists(save_path):
         print("Create a directory to save the model.")
         os.makedirs(save_path)
