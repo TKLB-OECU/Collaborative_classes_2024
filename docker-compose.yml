@@ -97,6 +97,7 @@ services:
     #ディレクトリをコンテナ内にマウント
     volumes:
       - ./nllb-200/src:/src
+      - /srv/models/:/src/models
     #ワーキングディレクトリを指定
     working_dir: /src
     #コンテナ起動時に実行するプログラムを記述
