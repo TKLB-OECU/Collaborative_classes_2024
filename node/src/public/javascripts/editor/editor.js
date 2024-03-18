@@ -25,10 +25,12 @@ setTimeout(function () {
 
           // 変更を反映するボタン
           document.getElementById("applyChangesButton").addEventListener("click", function () {
-            // エディタの内容を取得
-            var newSourceCode = editor.getValue();
+
+            //コードを取得
+            var newSourceCode = editor.getValue();            
             // 取得した内容を実行
-            eval(newSourceCode);
+            window.updateAcceleration = eval(`(${newSourceCode})`);
+            console.log(window.updateAcceleration);
           });
         })
         .catch((error) => {
