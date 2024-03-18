@@ -14,7 +14,7 @@ h2 {
 }
 
 #container {
-  width: 90%; /* 画面幅の80%に設定 */
+  width: 100%; /* 画面幅の80%に設定 */
   max-width: 1000px; /* 最大幅を800pxに制限 */
   height: 60vh; /* 画面の高さの60%に設定 */
   max-height: 600px; /* 最大高さを600pxに制限 */
