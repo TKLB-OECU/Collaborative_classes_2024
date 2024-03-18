@@ -1,77 +1,172 @@
-body{
-    margin: 0;
-    
+body {
+  margin: 0;
+  background-color: #f5f6f6;
+	overflow-x: hidden; /* 横スクロールバーを非表示 */
 }
 
 /* フォント */
 h1 {
-    font-size: 36px;
-  }
-  
-  h2 {
-    font-size: 32px;
-  }
-  
-  h3 {
-    font-size: 28px;
-  }
-  
-  h4 {
-    font-size: 24px;
-  }
-  
-  h5 {
-    font-size: 20px;
-  }
-  
-  p {
-    font-size: 16px;
-  }
-  
-  label {
-    font-size: 14px;
-  }
-  
-  aside {
-    font-size: 12px;
-  }
-  
-  button {
-    font-size: 16px;
-  }
-  
-  /* 余白 */
-  h1,
-  h2 {
-    margin-top: 64px;
-  }
-  
-  h3,
-  h4,
-  h5 {
-    margin-top: 40px;
-  }
-  
-  h6 {
-    margin-top: 24px;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-bottom: 24px;
-  }
-  
-  /* 特定の要素の余白 */
-  h4 {
-    margin-bottom: 16px;
-  }
-  
-  h5,
-  h6 {
-    margin-bottom: 16px;
-  }
-  
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 16px;
+}
+
+label {
+  font-size: 14px;
+}
+
+aside {
+  font-size: 12px;
+}
+
+/* 余白 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 24px;
+}
+
+/* 特定の要素の余白 */
+h4 {
+  margin-bottom: 16px;
+}
+
+h5,
+h6 {
+  margin-bottom: 16px;
+}
+
+div {
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  color: #fff;
+  background-color: #7492b5;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: 2px solid #666666;
+  border-radius: 10px; /* 角丸 */
+  transition: all 0.3s; /* 0.3秒で変化 */
+  font-weight: bold; /* 太字 */
+}
+
+button:hover {
+  background-color: #9d5f5f;
+}
+
+/* テーブルスタイル */
+table {
+  width: 100%; /* 幅を100%に設定 */
+  text-align: center; /* テキストを中央揃えにする */
+  border-collapse: collapse; /* ボーダーをまとめる */
+  border-spacing: 0; /* ボーダー間のスペースをなしにする */
+  table-layout: fixed; /* テーブルのレイアウトを固定にする */
+  margin: 0 auto; /* マージンを自動に設定 */
+  font-size: 18px; /* フォントサイズを設定 */
+  font-weight: bold; /* 太字 */
+  margin-top: 20px; /* 上マージンを設定 */
+  margin-bottom: 20px; /* 下マージンを設定 */
+  border: solid 2px #666666; /* ボーダーを設定 */
+}
+
+/* テーブルヘッダースタイル */
+table th {
+  padding: 10px; /* パディングを設定 */
+  background: #7492b5; /* 背景色を設定 */
+  border: solid 2px #666666; /* ボーダーを設定 */
+  color: #ffffff; /* テキストの色 */
+}
+
+/* テーブルデータスタイル */
+table td {
+  color: #666666;
+  padding: 10px; /* パディングを設定 */
+  border: solid 2px #666666; /* ボーダーを設定 */
+}
+
+/* 最初のテーブルデータスタイル */
+table td:first-child {
+  background: #e9faf9; /* 背景色を設定 */
+}
+
+form {
+  margin-bottom: 20px; /* 下マージンを設定 */
+}
+
+label {
+  width: 100%;
+  max-width: 248px;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+input#urlInput {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 48px;
+  flex: 1;
+  background: #eaedf2;
+  font-size: 18px;
+}
+
+input#inputData {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 48px;
+  flex: 1;
+  background: #eaedf2;
+  font-size: 18px;
+
+  width: 100%;
+  display: inline;
+  margin: 10px 0px;
+}
+
+.wrapper{
+  min-height: 100vh;
+  position: relative;
+}
+
+.page_title {
+  margin: 50px 50px;
+  width: auto;
+}
+
+.content {
+  margin-bottom: 40px;
+  width: auto;
+}
+
+.content_item {
+  background-color: white;
+  padding: 32px 56px;
+  margin: 50px 50px;
+}

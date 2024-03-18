@@ -1,3 +1,5 @@
-# node_modules ディレクトリを無視するようにします。
-
+shap-e/src/shap_e_model_cache/
+__pycache__
+core.*
+tmp.ply
 node/src/node_modules/

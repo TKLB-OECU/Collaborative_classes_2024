@@ -1,3 +1,14 @@
-h2{
-    color: blue;
+h2 {
+  color: blue;
+}
+
+#glCanvasContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.project {
+  position: fixed;
+  top: 0;
+  left: 0;
 }

@@ -1,12 +1,31 @@
 <!-- Headerを読み込む -->
 <%- include('../components/header') %>
 
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<div class="page_title">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+</div>
 
-<h2>プロンプト？</h2>
+<div class="content">
+  <div class="content_item">
+    <form id="apiForm">
+      <label for="inputData">プロンプト入力:</label>
+      <input type="text" id="inputData" name="inputData" placeholder="プロンプトを入力してください（例：apple）">
+      <button type="submit">送信</button>
+    </form>
+    <button id="downloadButton">ダウンロード</button>
+    <div id="responseContainer"></div>
+  </div>
+</div>
+
+<canvas id="3dCreate_canvas"></canvas>
 
 <!-- ページ固有のスタイルの読み込み -->
 <link rel="stylesheet" href="/stylesheets/pages/3dCreate.css">
+
+<script type="module" src="javascripts/module/three.min.js"></script>
+<script type="module" src="javascripts/module/GLTFLoader.js"></script>
+<script type="module" src="javascripts/pages/3dCreate.js"></script>
+<script type="module" src="javascripts/module/DRACOLoader.js"></script>
 <!-- Footerを読み込む -->
 <%- include('../components/footer') %>

@@ -1,10 +1,11 @@
 /* Footer.css */
 
 footer {
+    width: 100%;
     background-color: #7c97b6; /* プライマリーカラー */
     padding: 20px 0; /* 上下のパディング */
     text-align: center; /* 中央揃え */
-
+    bottom: 0; /* 下に固定 */
 }
 
 footer p {
