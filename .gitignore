@@ -4,3 +4,4 @@ core.*
 tmp.ply
 node/src/node_modules/
 node/src/bin/www
+shap-e/src/generated_shape/
