@@ -6,9 +6,9 @@ function updateAcceleration(data) {
   document.getElementById('xValue').textContent = x;
   document.getElementById('yValue').textContent = y;
   document.getElementById('zValue').textContent = z;
-  modelAcceleration.x += x;
-  modelAcceleration.y += y;
-  modelAcceleration.z += z;
+  modelAcceleration.x = x;
+  modelAcceleration.y = y;
+  modelAcceleration.z = z;
 }
 
 export { updateAcceleration };
