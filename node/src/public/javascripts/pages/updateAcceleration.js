@@ -4,11 +4,11 @@
 function updateAcceleration(data) {
   var { x, y, z } = data;
   document.getElementById('xValue').textContent = x;
-  document.getElementById('yValue').textContent = y;
-  document.getElementById('zValue').textContent = z;
+  // document.getElementById('yValue').textContent = y;
+  // document.getElementById('zValue').textContent = z;
   modelAcceleration.x += x;
-  modelAcceleration.y += y;
-  modelAcceleration.z += z;
+  // modelAcceleration.y += y;
+  // modelAcceleration.z += z;
 }
 
 export { updateAcceleration };
