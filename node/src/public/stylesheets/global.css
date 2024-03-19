@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-color: #f5f6f6;
-	overflow-x: hidden; /* 横スクロールバーを非表示 */
+  overflow-x: hidden; /* 横スクロールバーを非表示 */
 }
 
 /* フォント */
@@ -71,10 +71,12 @@ button {
   border-radius: 10px; /* 角丸 */
   transition: all 0.3s; /* 0.3秒で変化 */
   font-weight: bold; /* 太字 */
+  
+  box-shadow: 0 0 10px rgba(0, 0.5, 0, 0.5); /* ボックスシャドウ */
 }
 
 button:hover {
-  background-color: #9d5f5f;
+  background-color: #4f637a;
 }
 
 /* テーブルスタイル */
@@ -90,6 +92,7 @@ table {
   margin-top: 20px; /* 上マージンを設定 */
   margin-bottom: 20px; /* 下マージンを設定 */
   border: solid 2px #666666; /* ボーダーを設定 */
+  
 }
 
 /* テーブルヘッダースタイル */
@@ -150,7 +153,7 @@ input#inputData {
   margin: 10px 0px;
 }
 
-.wrapper{
+.wrapper {
   min-height: 100vh;
   position: relative;
 }
@@ -169,4 +172,7 @@ input#inputData {
   background-color: white;
   padding: 32px 56px;
   margin: 50px 50px;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* ボックスシャドウ */
 }
+
