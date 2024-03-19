@@ -110,7 +110,7 @@ services:
     tty: true
     #ポート設定
     ports:
-      - "8010:8010"
+      - "8020:8020"
     #コンテナネットワークの設定
     networks:
       - my_network
@@ -126,6 +126,35 @@ services:
 
     #core dumpを防ぐ為の設定
     shm_size: 12GB
+
+
+
+################################
+########## chiveの設定 #########
+###############################
+  collaborative_classes-chive:
+    build: 
+      #ビルドする際に使用するdockerfileを指定
+      context: chive/.devcontainer
+      dockerfile: dockerfile
+      #dockerfile内で使用する変数を渡す。
+      args:
+        - http_tmp=$http_proxy
+        - https_tmp=$https_proxy
+    #設定ファイルをコンテナ内にマウント。
+    volumes:
+      - ./chive/src/:/src
+    #コンテナ起動時に実行するプログラムを記述
+    #command: /sbin/init
+    #ポート設定
+    ports:
+      - "3020:3020"       #node用
+      - "8030:8030"   #shap-e用
+      - "8040:8040"   #nllb-200用
+      - "8050:8050"    #chive用
+    #コンテナネットワークの設定
+    networks:
+      - my_network
 
 
 
