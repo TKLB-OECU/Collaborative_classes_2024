@@ -19,8 +19,21 @@ window.modelAcceleration = {
   z: 0,
 };
 
-//モデルサイズを管理する変数
-window.scale = 100
+//モデルサイズ格納するグローバル変数
+window.scale = 200
+window.changeSize = function changeSize(x) {
+  var tmp_size = window.scale += x;  
+  console.log(tmp_size);
+  if (tmp_size < 50) {
+    window.scale = 50;
+  }
+  else if(tmp_size > 500) {
+    window.scale = 500;
+  }
+  else {
+    window.scale = tmp_size;
+  }
+}
 
 // キャンバスサイズ
 const sizes = {
@@ -103,7 +116,7 @@ window.loadModel = function loadModel(contents) {
     // 適切な拡大率を計算
     const maxSize = Math.max(size.x, size.y, size.z);
     console.log(Math.max(size.x, size.y, size.z))
-    window.scale = 300 / maxSize; // 200 は適当な基準サイズ
+    //window.scale = 300 / maxSize; // 200 は適当な基準サイズ
 
     // モデルに拡大率を適用
     sceneManager.model.scale.set(window.scale, window.scale, window.scale);
@@ -251,6 +264,7 @@ async function sendRequest(url) {
     const response = await fetch(`/3dMotion/getAccelerationData?url=${url}`);
     const accelerationData = await response.json();
     sceneManager.model.scale.set(window.scale, window.scale, window.scale);
+    document.getElementById('sizeValue').textContent = window.scale;
     window.updateAcceleration(accelerationData);
   } catch (error) {
     console.error('エラー:', error);
@@ -288,6 +302,7 @@ function stopRequest() {
   document.getElementById('xValue').textContent = "未取得";
   document.getElementById('yValue').textContent = "未取得";
   document.getElementById('zValue').textContent = "未取得";
+  document.getElementById('sizeValue').textContent = "未取得";
   startButton.disabled = false; // 開始ボタンを有効にする
   stopButton.disabled = true; // 停止ボタンを無効にする
 }
