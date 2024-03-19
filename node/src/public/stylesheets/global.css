@@ -71,6 +71,8 @@ button {
   border-radius: 10px; /* 角丸 */
   transition: all 0.3s; /* 0.3秒で変化 */
   font-weight: bold; /* 太字 */
+  
+  box-shadow: 0 0 10px rgba(0, 0.5, 0, 0.5); /* ボックスシャドウ */
 }
 
 button:hover {
@@ -90,6 +92,7 @@ table {
   margin-top: 20px; /* 上マージンを設定 */
   margin-bottom: 20px; /* 下マージンを設定 */
   border: solid 2px #666666; /* ボーダーを設定 */
+  
 }
 
 /* テーブルヘッダースタイル */
@@ -173,7 +176,3 @@ input#inputData {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* ボックスシャドウ */
 }
 
-button{
-  
-  box-shadow: 0 0 10px rgba(0, 0.5, 0, 0.5); /* ボックスシャドウ */
-}
