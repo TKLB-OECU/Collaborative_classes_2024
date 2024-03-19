@@ -19,6 +19,9 @@ window.modelAcceleration = {
   z: 0,
 };
 
+//モデルサイズを管理する変数
+window.scale = 100
+
 // キャンバスサイズ
 const sizes = {
   width: document.body.clientWidth,
@@ -80,8 +83,9 @@ function handleResize() {
   setCameraPosition(); // 初期設定
 }
 
+
 // モデルのロード関数
-function loadModel(contents) {
+window.loadModel = function loadModel(contents) {
   const loader = new THREE.GLTFLoader();
   const dracoLoader = new THREE.DRACOLoader();
   loader.setDRACOLoader(dracoLoader);
@@ -99,10 +103,10 @@ function loadModel(contents) {
     // 適切な拡大率を計算
     const maxSize = Math.max(size.x, size.y, size.z);
     console.log(Math.max(size.x, size.y, size.z))
-    const scale = 300 / maxSize; // 200 は適当な基準サイズ
+    window.scale = 300 / maxSize; // 200 は適当な基準サイズ
 
     // モデルに拡大率を適用
-    sceneManager.model.scale.set(scale, scale, scale);
+    sceneManager.model.scale.set(window.scale, window.scale, window.scale);
 
     sceneManager.scene.add(sceneManager.model);
     animate(); // モデルが読み込まれた後にアニメーションを開始
@@ -144,7 +148,7 @@ function initialize() {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = function (event) {
-      const contents = event.target.result;
+      window.contents = event.target.result;
       console.log("ファイルが正常に読み込まれました。");
       console.log("ファイル内容:", contents); // ファイルの内容をコンソールに出力
 
@@ -246,6 +250,7 @@ async function sendRequest(url) {
   try {
     const response = await fetch(`/3dMotion/getAccelerationData?url=${url}`);
     const accelerationData = await response.json();
+    sceneManager.model.scale.set(window.scale, window.scale, window.scale);
     window.updateAcceleration(accelerationData);
   } catch (error) {
     console.error('エラー:', error);
