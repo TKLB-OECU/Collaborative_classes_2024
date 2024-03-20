@@ -98,6 +98,7 @@ function handleResize() {
 }
 
 
+
 // モデルのロード関数
 window.loadModel = function loadModel(contents) {
   const loader = new THREE.GLTFLoader();
