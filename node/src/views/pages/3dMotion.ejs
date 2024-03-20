@@ -7,8 +7,31 @@
 
 <div class="page_title">
   <h1>加速度センサーを使った3Dモデル制御</h1>
+  <p>Welcome to 3Dモデル制御</p>
 </div>
-
+<div class="content">
+  <div class="content_item">
+    <h2>演習</h2>
+    <h3>問題 1</h3>
+    <p>
+      得られた生の加速度(X,Y,Z)をそのまま3Dモデルの姿勢制御に適応する。<br />
+    </p>
+    <h3>問題 2</h3>
+    <p>
+      加速度Xの値が一定以上の条件【 ≧9 】or【 ≦-9 】に応じて、
+      3D空間上モデルのX軸の回転速度を固定長にする。
+      <br />
+    </p>
+    <h3>問題 3</h3>
+    <p>問題3の加速度Y・加速度Zのバージョンを試す。<br /></p>
+    <h3>問題 4</h3>
+    <p>2条件問題。加速度Yの値が正か負かによって【問題①】の動作を真逆にする。</p>
+    <h2>エディター</h2>
+    <div id="container"></div>
+    <!-- 変更を反映するボタン -->
+    <button id="applyChangesButton">変更を反映する</button>
+  </div>
+</div>
 <div class="content">
   <div class="content_item">
     <h1>加速度データ取得</h1>
@@ -44,13 +67,6 @@
     </div>
   </div>
 
-  <div
-    id="container"
-    style="width: 800px; height: 600px; border: 1px solid grey"
-  ></div>
-      <!-- 変更を反映するボタン -->
-      <button id="applyChangesButton">変更を反映する</button>
-
   <div class="content_item">
     <h3>3Dモデル描画</h3>
     <!-- // 3Dモデルを表示させるcanvas要素を作成 -->
@@ -58,9 +74,8 @@
     <input type="file" id="modelFileInput" style="display: none" />
     <button id="selectModelButton">3Dモデルを選択</button>
   </div>
+  <canvas id="CanvasArea"></canvas>
 </div>
-
-<canvas id="CanvasArea"></canvas>
 
 <!-- ページ固有のスタイルの読み込み -->
 <link rel="stylesheet" href="/stylesheets/pages/3dMotion.css" />
