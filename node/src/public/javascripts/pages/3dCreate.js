@@ -94,7 +94,7 @@ document.getElementById('apiForm').addEventListener('submit', function(event) {
     var inputData = document.getElementById('inputData').value;
 
     // Web APIのエンドポイント
-    var apiUrl = 'http://133.89.44.20:8020/items/?prompt='; // 実際のAPIのURLに置き換える
+    var apiUrl = 'http://133.89.44.20:8020/shape_generate/?prompt='; // 実際のAPIのURLに置き換える
 
     // ボタンを非活性化
     document.getElementById('apiForm').querySelector('button').disabled = true;

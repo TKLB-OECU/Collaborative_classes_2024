@@ -97,10 +97,11 @@ services:
     #ディレクトリをコンテナ内にマウント
     volumes:
       - ./nllb-200/src:/src
+      - /srv/models/:/src/models
     #ワーキングディレクトリを指定
     working_dir: /src
     #コンテナ起動時に実行するプログラムを記述
-    command: /sbin/init
+    command: python3 nllb-200_service.py
     #proxyファイルを読み込む
     env_file:
       - proxy.env

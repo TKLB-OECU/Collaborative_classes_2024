@@ -5,6 +5,10 @@ import sys
 import uvicorn
 import fastapi
 import time
+import requests
+import re
+import os
+
 from setproctitle import setproctitle
 from fastapi.responses import JSONResponse
 from os.path import dirname, abspath
@@ -19,14 +23,14 @@ sys.path.append(parent_dir)
 from shap_e.diffusion.sample import sample_latents
 from shap_e.diffusion.gaussian_diffusion import diffusion_from_config
 from shap_e.models.download import load_model, load_config
-from shap_e.util.notebooks import create_pan_cameras, decode_latent_images, gif_widget
+#from shap_e.util.notebooks import create_pan_cameras, decode_latent_images, gif_widget
 from shap_e.util.notebooks import decode_latent_mesh
 
 #FastAPIのインスタンス化
 app = fastapi.FastAPI()
 
 #"アイテム"のエンドポイント
-@app.get("/items/")
+@app.get("/shape_generate/")
 def items(prompt: str):
     try:
         while True:
@@ -40,15 +44,46 @@ def items(prompt: str):
                 continue
             #VRAMが9割未満の場合は処理を続行
             else:
-                #プロンプトを受け取り、3Dモデルを生成
-                shape_generate(prompt,"tmp.ply")
+                #プロンプトのクリーニング
+                prompt = prompt_cleaning(prompt)
+                #プロンプトを翻訳
+                prompt = pronmpt_translation(prompt)
+                #モデル名称
+                model_name = re.sub(" ","_",prompt)
+                #翻訳済みプロンプトを受け取り、3Dモデルを生成
+                shape_generate(prompt,os.path.join(save_path, f"{model_name}.ply"))
                 #生成した3Dモデルをglb形式に変換した後base64へエンコード
-                glb_base64 = glb_to_base64("tmp.ply")
+                glb_base64 = glb_to_base64(os.path.join(save_path, f"{model_name}.ply"))
                 #生成した3Dモデルのbase64を返す
                 return JSONResponse(content=glb_base64, headers={"Access-Control-Allow-Origin": "*"})
         #エラーハンドリング
     except Exception as e:
         print(e)
+
+
+def pronmpt_translation(prompt):
+
+    #json形式でリクエストのひながあｔを作成
+    payload = {
+        "text" : prompt,
+        "input_code" : "jpn_Jpan",    #翻訳元言語
+        "output_code" : "eng_Latn",   #翻訳先言語
+        "max_length" : 1000     #翻訳後の最大文字数
+    }
+
+    #nllb-200サーバーURL
+    url = "http://133.89.44.20:8010/translation/"
+    #リクエストを送信
+    response = requests.get(url, json=payload)
+
+    return response.text.replace("\"", "")
+
+
+def prompt_cleaning(prompt):
+    # アルファベット、数字、ピリオド、カンマ、日本語、空白以外の文字を削除する正規表現パターン
+    clean_text = re.sub(r'[^\w.,\u3000-\u30FF\u3040-\u309F\u4E00-\u9FFF\s]', '', prompt)
+    return clean_text
+
 
 
 def vram_check():
@@ -92,6 +127,13 @@ def glb_to_base64(Generated_name):
 if __name__ == "__main__":
     #プロセス名称の指定
     setproctitle('Collaborative_classes_2024 [shap-e]')
+
+    #モデル保存先の確認
+    save_path = "./generated_shape"
+    if not os.path.exists(save_path):
+        print("Create a directory to save the model.")
+        os.makedirs(save_path)
+
 
     #使用するデバイスの設定
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

@@ -14,4 +14,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 #apt関連の設定
 RUN apt update -y && apt upgrade -y
-RUN apt install -y nano screen tmux systemd init nginx python3 python3-pip sed git
+#RUN apt install -y nano systemd init
+
+#pip関連
+RUN mkdir -p /tmp
+COPY requirements.txt /tmp
+WORKDIR /tmp
+RUN pip install -r /tmp/requirements.txt
