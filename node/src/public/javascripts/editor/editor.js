@@ -31,6 +31,10 @@ setTimeout(function () {
             // 取得した内容を実行
             eval(newSourceCode);
 
+            sceneManager.model.rotation.x = 0;
+            sceneManager.model.rotation.y = 0;
+            sceneManager.model.rotation.z =0;
+
             //以下は、updateAcceleration関数以外にも、受講者側に弄らせる可能性が出てきた為、コメントアウト
             //window.updateAcceleration = eval(`(${newSourceCode})`);
             //console.log(window.updateAcceleration);

@@ -1,0 +1,37 @@
+<!-- Headerを読み込む -->
+<%- include('../components/header') %>
+
+<div class="page_title">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+</div>
+
+<div class="container">
+    <div class="column">
+        <form id="similarity">
+        <h2>類似語を出力</h2>
+        <label for="text_1">テキスト:</label>
+        <input type="text" id="text" name="text" placeholder="テキストを入力してください（例：コーヒー）">
+        <button type="submit">送信</button>
+        </form>
+
+        <form id="addition">
+            <h2>2つのテキストを加算</h2>
+            <label for="text_1">1つ目のテキスト:</label>
+            <input type="text" id="text_1" name="text_1" placeholder="テキストを入力してください（例：コーヒー）">
+            <label for="text_2">2つ目のテキスト:</label>
+            <input type="text" id="text_2" name="text_2" placeholder="テキストを入力してください（例：牛乳）">
+            <button type="submit">送信</button>
+        </form>
+    </div>
+    <div class="column" id="response-column">
+        <div id="response"></div>
+    </div>
+</div>
+
+<!-- ページ固有のスタイルの読み込み -->
+<link rel="stylesheet" href="/stylesheets/pages/Word2Vec.css">
+
+<script type="module" src="javascripts/pages/Word2Vec.js"></script>
+<!-- Footerを読み込む -->
+<%- include('../components/footer') %>

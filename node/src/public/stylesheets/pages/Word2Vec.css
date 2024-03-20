@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+    padding: 20px;
+}
+
+#similarity {
+    display: flex;
+    flex-direction: column; /* 子要素を縦方向に配置 */
+    background-color: #ffffff;
+    height: 40%;
+    padding: 20px;
+}
+
+#addition {
+    display: flex;
+    flex-direction: column; /* 子要素を縦方向に配置 */
+    background-color: #ffffff;
+    height: 45%;
+    padding: 20px;
+}
+
+#element button {
+    justify-content: center; /* 子要素を中央に配置 */
+    align-items: center; /* 子要素を中央に配置 */
+    margin-top: 20px; /* 上側に余白を追加 */
+}
+
+#input {
+    margin-top: 20px;
+    white-space: pre-line;
+}
+
+#response-column {
+    text-emphasis-color: #ffff00;
+    background-color: #ffffff;
+    padding: 20px;
+}

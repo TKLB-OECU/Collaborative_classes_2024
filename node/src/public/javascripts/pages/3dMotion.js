@@ -19,6 +19,7 @@ window.modelAcceleration = {
   z: 0,
 };
 
+
 //モデルサイズ格納するグローバル変数
 window.scale = 200
 window.changeSize = function changeSize(x) {
@@ -134,10 +135,11 @@ function animate() {
   requestAnimationFrame(animate);
 
   // 回転と移動
+  //単純に変数を代入(+=)
   if (sceneManager.model) {
-    sceneManager.model.rotation.x += modelAcceleration.x * 0.001;
-    sceneManager.model.rotation.y += modelAcceleration.y * 0.001;
-    sceneManager.model.rotation.z += modelAcceleration.z * 0.001;
+    sceneManager.model.rotation.x = modelAcceleration.x * 0.001;
+    sceneManager.model.rotation.y = modelAcceleration.y * 0.001;
+    sceneManager.model.rotation.z = modelAcceleration.z * 0.001;
   }
 
   // 描画

@@ -110,7 +110,7 @@ services:
     tty: true
     #ポート設定
     ports:
-      - "8020:8020"
+      - "8010:8010"
     #コンテナネットワークの設定
     networks:
       - my_network
@@ -144,14 +144,21 @@ services:
     #設定ファイルをコンテナ内にマウント。
     volumes:
       - ./chive/src/:/src
+      - /srv/models/:/src/models
+    #ワーキングディレクトリを指定
+    working_dir: /src
+    #proxyファイルを読み込む
+    env_file:
+      - proxy.env
+    #ttyとprivilegedを有効化
+    privileged: true
+    tty: true
     #コンテナ起動時に実行するプログラムを記述
-    #command: /sbin/init
+    command: /bin/bash
+    #command: python3 chive_service.py
     #ポート設定
     ports:
-      - "3020:3020"       #node用
-      - "8030:8030"   #shap-e用
-      - "8040:8040"   #nllb-200用
-      - "8050:8050"    #chive用
+      - "8020:8020"
     #コンテナネットワークの設定
     networks:
       - my_network
@@ -178,8 +185,9 @@ services:
     #ポート設定
     ports:
       - "3020:3020"       #node用
-      - "8020:8020"   #shap-e用
-      - "8030:8030"   #nllb-200用
+      - "8030:8030"   #shap-e用
+      - "8040:8040"   #nllb-200用
+      - "8050:8050"   #chive用
     #コンテナネットワークの設定
     networks:
       - my_network

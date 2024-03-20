@@ -9,6 +9,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var CreateRouter = require('./routes/3dCreate');
 var MotionRouter = require('./routes/3dMotion');
+var Word2Vec = require('./routes/Word2Vec');
 var LectureDocuments = require('./routes/LectureDocuments');
 
 // Expressアプリケーションの作成
@@ -32,6 +33,7 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));/
 app.use('/', indexRouter);
 app.use('/3dCreate', CreateRouter);
 app.use('/3dMotion', MotionRouter);
+app.use('/Word2Vec', Word2Vec);
 app.use('/LectureDocuments', LectureDocuments);
 
 // 404エラー時のハンドリング

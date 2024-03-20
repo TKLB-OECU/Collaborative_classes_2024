@@ -1,0 +1,7 @@
+#FastAPI関連
+uvicorn
+fastapi
+
+#その他
+gensim
+setproctitle
