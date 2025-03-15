@@ -3,22 +3,31 @@
 
 <div class="page_title">
   <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
 </div>
 
 <div class="content">
   <div class="content_item">
-    <h2>Blockly</h2>
+    <h2>画像生成補助ツール:Blockly環境</h2>
 
-
-
-
-
-
-
+    <div id="pageContainer">
+      <div id="blocklyDiv"></div>
+      <div id="outputPane">
+        <h3>プロンプト</h3>
+        <pre
+          id="generatedCode"
+        ><code><!-- ここにコードが表示されます --></code></pre>
+      </div>
+    </div>
   </div>
 </div>
-<!-- ページ固有のスタイルの読み込み -->
+
+<!-- スタイルとスクリプト -->
 <link rel="stylesheet" href="/stylesheets/pages/Blockly.css" />
+<!-- Blocklyライブラリを compressedファイルで読み込み -->
+<script src="../../node_modules/blockly/blockly_compressed.js"></script>
+<script src="../../node_modules/blockly/blocks_compressed.js"></script>
+<script src="../../node_modules/blockly/javascript_compressed.js"></script>
+<!-- ページ固有のJavaScriptの読み込み -->
+<script type="module" src="/javascripts/pages/Blockly.js"></script>
 <!-- Footerを読み込む -->
 <%- include('../components/footer') %>

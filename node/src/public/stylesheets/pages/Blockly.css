@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  max-width: 100vw;
+}
+
+#pageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
+}
+
+#blocklyDiv {
+  flex: 2;
+  height: 60%;
+  min-width: 300px;
+}
+
+#outputPane {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+  min-height: 200px;
+  border-top: 1px solid #ddd;
+}
+
+#generatedCode {
+  width: 100%;
+  background-color: rgb(247, 240, 228);
+  padding: 1rem;
+  min-height: 100px;
+  overflow: auto;
+}
+
+/* モード切り替え用のスタイル */
+#pageContainer.edit-mode #blocklyDiv {
+  display: block;
+}
+
+#pageContainer.edit-mode #outputPane {
+  display: none;
+}
+
+#pageContainer.output-mode #blocklyDiv {
+  display: none;
+}
+
+#pageContainer.output-mode #outputPane {
+  display: block;
+  flex-basis: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* レスポンシブデザイン対応 */
+@media (max-width: 768px) {
+  #pageContainer {
+    height: auto;
+  }
+
+  #blocklyDiv {
+    height: 50vh;
+  }
+
+  #outputPane {
+    min-height: 150px;
+  }
+}
