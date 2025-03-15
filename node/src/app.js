@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var CreateRouter = require('./routes/3dCreate');
 var MotionRouter = require('./routes/3dMotion');
 var LectureDocuments = require('./routes/LectureDocuments');
+var BlocklyRouter = require('./routes/Blockly');
 
 // Expressアプリケーションの作成
 var app = express();
@@ -33,6 +34,7 @@ app.use('/', indexRouter);
 app.use('/3dCreate', CreateRouter);
 app.use('/3dMotion', MotionRouter);
 app.use('/LectureDocuments', LectureDocuments);
+app.use('/Blockly', BlocklyRouter);
 
 // 404エラー時のハンドリング
 app.use(function(req, res, next) {
