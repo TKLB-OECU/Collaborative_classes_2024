@@ -1,21 +1,55 @@
 <!-- Headerを読み込む -->
 <%- include('../components/header') %>
 
-<div class="page_title">
-  <h1><%= title %></h1>
-</div>
+<!-- モバイル向けビューポート設定 -->
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
+/>
 
 <div class="content">
-  <div class="content_item">
-    <h2>画像生成補助ツール:Blockly環境</h2>
+  <h2 class="responsive-title">画像生成補助ツール</h2>
 
-    <div id="pageContainer">
-      <div id="blocklyDiv"></div>
-      <div id="outputPane">
-        <h3>プロンプト</h3>
-        <pre
-          id="generatedCode"
-        ><code><!-- ここにコードが表示されます --></code></pre>
+  <!-- モバイル用タブ切り替えUI -->
+  <div class="mobile-tabs">
+    <button id="blocklyTab" class="mobile-tab active">ブロック編集</button>
+    <button id="outputTab" class="mobile-tab">プロンプト確認</button>
+  </div>
+
+  <div id="pageContainer">
+    <div id="blocklyDiv" class="active-view"></div>
+    <div id="outputPane" class="hidden-view">
+      <div class="prompt-header">
+        <h3>プロンプト確認</h3>
+        <p class="prompt-subtitle">
+          下記のプロンプトから1つ選択して画像生成できます
+        </p>
+      </div>
+
+      <div id="generatedCode" class="prompt-container">
+        <!-- ここにプロンプトリストが表示されます -->
+      </div>
+
+      <div class="api-controls">
+        <button id="generateImagesBtn" class="api-button">
+          画像生成
+        </button>
+        <div id="apiLoadingIndicator" class="loading-indicator hidden">
+          <span class="loader"></span>
+          <span class="loading-text">リクエスト処理中...</span>
+        </div>
+      </div>
+
+      <div id="apiErrorContainer" class="error-container hidden">
+        <div class="error-icon">⚠️</div>
+        <p id="apiErrorMessage"></p>
+      </div>
+
+      <div class="result-container">
+        <h3 class="result-header">生成結果</h3>
+        <div id="generatedImagesContainer" class="image-container">
+          <!-- ここに画像が追加されます -->
+        </div>
       </div>
     </div>
   </div>
